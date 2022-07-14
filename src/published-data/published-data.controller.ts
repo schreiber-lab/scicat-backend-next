@@ -168,7 +168,7 @@ export class PublishedDataController {
   }
 
   // GET /publisheddata/:id
-  @UseGuards(PoliciesGuard)
+  @AllowAny()
   @CheckPolicies((ability: AppAbility) =>
     ability.can(Action.Read, PublishedData),
   )

@@ -28,7 +28,7 @@ export class Job {
   @Prop({
     type: String,
     required: true,
-    enum: [JobType.Archive, JobType.Retrieve],
+    enum: [JobType.Archive, JobType.Retrieve, JobType.Reset],
     default: JobType.Retrieve,
   })
   type: string;

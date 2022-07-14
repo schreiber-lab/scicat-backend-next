@@ -14,6 +14,7 @@ import {
   HttpCode,
   HttpStatus,
   Headers,
+  ArgumentMetadata,
 } from "@nestjs/common";
 import {
   ApiBearerAuth,
@@ -106,7 +107,9 @@ export class DatasetsController {
       filter && filter.filter
         ? JSON.parse(filter.filter)
         : headers.filter
-        ? JSON.parse(headers.filter as string)
+        ? JSON.parse(
+            new FilterPipe().transform({filter: headers.filter as string}, {} as ArgumentMetadata).filter as string
+          )
         : {};
     const jsonFields: FilterQuery<DatasetDocument> =
       filter && filter.fields ? JSON.parse(filter.fields) : {};
